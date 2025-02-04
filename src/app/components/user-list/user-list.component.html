@@ -1,0 +1,44 @@
+<div class="user-list-container">
+    <div class="filters">
+      <input [(ngModel)]="searchTerm" placeholder="Search" class="search-input" />
+  
+      <select [(ngModel)]="workoutTypeFilter" class="filter-dropdown">
+        <option value="">Filter by Workout Type</option>
+        <option value="Running">Running</option>
+        <option value="Cycling">Cycling</option>
+        <option value="Swimming">Swimming</option>
+        <option value="Yoga">Yoga</option>
+      </select>
+    </div>
+  
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Workouts</th>
+          <th>Number of Workouts</th>
+          <th>Total Workout Minutes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers">
+          <td>{{ user.name }}</td>
+          <td>{{ getWorkoutNames(user.workouts) }}</td>
+          <td>{{ user.workouts.length }}</td>
+          <td>{{ getTotalMinutes(user.workouts) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">« Previous</button>
+      <span>{{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= filteredUsers.length">Next »</button>
+      
+      <label>Items per page:</label>
+      <select [(ngModel)]="itemsPerPage" (change)="currentPage = 1">
+        <option *ngFor="let size of [5, 10, 15]" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+  </div>
+  
