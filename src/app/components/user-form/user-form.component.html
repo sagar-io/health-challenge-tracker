@@ -1,34 +1,53 @@
-<form class="user-form">
-    <div class="form-group">
-      <label for="name">User Name*</label>
-      <input id="name" [(ngModel)]="userName" name="name" placeholder="User Name" required />
-    </div>
-  
-    <div class="form-group">
-      <label for="type">Workout Type*</label>
-      <select id="type" [(ngModel)]="workoutType" name="type" required>
-        <option value="" disabled>Select Workout</option>
-        <option value="Cycling">Cycling</option>
-        <option value="Running">Running</option>
-        <option value="Swimming">Swimming</option>
-      </select>
-    </div>
-  
-    <div class="form-group">
-      <label for="minutes">Workout Minutes*</label>
-      <input 
-        id="minutes" 
-        [(ngModel)]="workoutMinutes" 
-        name="minutes" 
-        placeholder="Minutes" 
-        type="number" 
-        min="1"
-        required 
-      />
-    </div>
-  
-    <div class="button-group">
-      <button type="button" (click)="addWorkout()">Add Workout</button>
-    </div>
-  </form>
-  
+<form class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md mb-28 mt-16">
+  <div class="mb-4">
+    <label for="name" class="block font-semibold text-gray-700">User Name*</label>
+    <input 
+      id="name" 
+      [(ngModel)]="userName" 
+      name="name" 
+      placeholder="User Name" 
+      required
+      class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="type" class="block font-semibold text-gray-700">Workout Type*</label>
+    <select 
+      id="type" 
+      [(ngModel)]="workoutType" 
+      name="type" 
+      required
+      class="w-full p-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    >
+      <option value="" disabled>Select Workout</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Running">Running</option>
+      <option value="Swimming">Swimming</option>
+    </select>
+  </div>
+
+  <div class="mb-4">
+    <label for="minutes" class="block font-semibold text-gray-700">Workout Minutes*</label>
+    <input 
+      id="minutes" 
+      [(ngModel)]="workoutMinutes" 
+      name="minutes" 
+      placeholder="Minutes" 
+      type="number" 
+      min="1"
+      required
+      class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    />
+  </div>
+
+  <div class="flex justify-end">
+    <button 
+      type="button" 
+      (click)="addWorkout()" 
+      class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300"
+    >
+      Add Workout
+    </button>
+  </div>
+</form>

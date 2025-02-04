@@ -33,7 +33,7 @@ describe('UserListComponent', () => {
     ];
     userService.getUsers.and.returnValue(mockUsers);
 
-    fixture.detectChanges(); // Trigger change detection
+    fixture.detectChanges();
 
     const tableRows = fixture.nativeElement.querySelectorAll('tbody tr');
     expect(tableRows.length).toBe(2);

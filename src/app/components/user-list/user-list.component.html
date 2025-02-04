@@ -1,44 +1,73 @@
-<div class="user-list-container">
-    <div class="filters">
-      <input [(ngModel)]="searchTerm" placeholder="Search" class="search-input" />
-  
-      <select [(ngModel)]="workoutTypeFilter" class="filter-dropdown">
-        <option value="">Filter by Workout Type</option>
-        <option value="Running">Running</option>
-        <option value="Cycling">Cycling</option>
-        <option value="Swimming">Swimming</option>
-        <option value="Yoga">Yoga</option>
-      </select>
-    </div>
-  
-    <table class="user-table">
-      <thead>
+<div class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <!-- Search & Filter Section -->
+  <div class="flex flex-col sm:flex-row justify-between gap-4 mb-4">
+    <input 
+      [(ngModel)]="searchTerm" 
+      placeholder="Search..." 
+      class="w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
+    />
+
+    <select 
+      [(ngModel)]="workoutTypeFilter" 
+      class="w-full sm:w-1/2 p-2 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    >
+      <option value="">Filter by Workout Type</option>
+      <option value="Running">Running</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Yoga">Yoga</option>
+    </select>
+  </div>
+
+  <!-- User Workout Table -->
+  <div class="overflow-x-auto">
+    <table class="w-full border border-gray-300">
+      <thead class="bg-gray-100">
         <tr>
-          <th>Name</th>
-          <th>Workouts</th>
-          <th>Number of Workouts</th>
-          <th>Total Workout Minutes</th>
+          <th class="p-3 border border-gray-300 text-left">Name</th>
+          <th class="p-3 border border-gray-300 text-left">Workouts</th>
+          <th class="p-3 border border-gray-300 text-left">Number of Workouts</th>
+          <th class="p-3 border border-gray-300 text-left">Total Workout Minutes</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of paginatedUsers">
-          <td>{{ user.name }}</td>
-          <td>{{ getWorkoutNames(user.workouts) }}</td>
-          <td>{{ user.workouts.length }}</td>
-          <td>{{ getTotalMinutes(user.workouts) }}</td>
+        <tr *ngFor="let user of paginatedUsers" class="even:bg-gray-50">
+          <td class="p-3 border border-gray-300">{{ user.name }}</td>
+          <td class="p-3 border border-gray-300">{{ getWorkoutNames(user.workouts) }}</td>
+          <td class="p-3 border border-gray-300">{{ user.workouts.length }}</td>
+          <td class="p-3 border border-gray-300">{{ getTotalMinutes(user.workouts) }}</td>
         </tr>
       </tbody>
     </table>
-  
-    <div class="pagination">
-      <button (click)="previousPage()" [disabled]="currentPage === 1">« Previous</button>
-      <span>{{ currentPage }}</span>
-      <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= filteredUsers.length">Next »</button>
-      
-      <label>Items per page:</label>
-      <select [(ngModel)]="itemsPerPage" (change)="currentPage = 1">
-        <option *ngFor="let size of [5, 10, 15]" [value]="size">{{ size }}</option>
-      </select>
-    </div>
   </div>
-  
+
+  <!-- Pagination Controls -->
+  <div class="flex flex-wrap justify-center items-center gap-3 mt-4">
+    <button 
+      (click)="previousPage()" 
+      [disabled]="currentPage === 1" 
+      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 disabled:bg-gray-400"
+    >
+      « Previous
+    </button>
+
+    <span class="text-lg font-semibold">{{ currentPage }}</span>
+
+    <button 
+      (click)="nextPage()" 
+      [disabled]="currentPage * itemsPerPage >= filteredUsers.length" 
+      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 disabled:bg-gray-400"
+    >
+      Next »
+    </button>
+
+    <label class="font-semibold">Items per page:</label>
+    <select 
+      [(ngModel)]="itemsPerPage" 
+      (change)="currentPage = 1" 
+      class="p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+    >
+      <option *ngFor="let size of [5, 10, 15]" [value]="size">{{ size }}</option>
+    </select>
+  </div>
+</div>

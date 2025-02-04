@@ -7,7 +7,6 @@ import { UserService } from '../../services/user.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent {
   userName: string = '';

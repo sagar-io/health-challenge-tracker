@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   standalone: true, 
   imports: [FormsModule, CommonModule], 
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit, OnDestroy {
   users: User[] = [];
